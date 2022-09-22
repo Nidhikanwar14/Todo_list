@@ -1,17 +1,26 @@
 import {useState} from "react";
 import Header from "./Header";
 import Todo from "./Todo";
+import {Alert} from "antd";
 
 const TodoList = () =>{
     const [todos ,setTodos] = useState([]);
+    const [isEdit ,setIsEdit] = useState('');
 
     const addTodo = todo => {
 
             const newTodos = [todo, ...todos];
             setTodos(newTodos);
-            // console.log(newTodos)
-        }
-
+    }
+ const updatedTodo = (id,newValue) =>{
+      setTodos(prev => prev.map(item => (item.id === id ? newValue : item)))
+ }
+    // const submitUpdate = value =>{
+    //     // updatedTodo(edit.id , value);
+    //     setIsEdit({
+    //         id: null,
+    //         value: ''
+    //     })
     // }
 
     const deleteTodo = (id) =>{
@@ -20,6 +29,10 @@ const TodoList = () =>{
             return todo.id !==id;
         })
         setTodos(remove)
+    }
+
+    const editTask = () =>{
+
     }
 
     const completeTodo = () =>{
